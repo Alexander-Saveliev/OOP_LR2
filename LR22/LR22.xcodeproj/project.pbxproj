@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		403CD9CC204DAFE20013BA74 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403CD9CB204DAFE20013BA74 /* main.swift */; };
-		403CD9D3204DB0690013BA74 /* some_lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403CD9D2204DB0690013BA74 /* some_lib.swift */; };
 		40563956204F0C99008C66A8 /* LR22_tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40563955204F0C99008C66A8 /* LR22_tests.swift */; };
+		4094E72E204FC7E6000F806D /* some_lib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403CD9D2204DB0690013BA74 /* some_lib.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -178,7 +178,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				403CD9CC204DAFE20013BA74 /* main.swift in Sources */,
-				403CD9D3204DB0690013BA74 /* some_lib.swift in Sources */,
+				4094E72E204FC7E6000F806D /* some_lib.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

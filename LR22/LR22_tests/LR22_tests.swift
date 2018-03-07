@@ -26,17 +26,23 @@ func htmlDecode(_ text: String) -> String {
 
 func decodeSymbolInText(_ text: String, atIndex: String.Index) -> (symbol: Character, size: Int) {
     
-    func textAtIndexIsEqualToSymbol(_ symbol: String) -> Bool {
+    func tailIsEqualToSymbol(_ symbol: String) -> Bool {
         return text[atIndex...text.index(atIndex, offsetBy: symbol.count - 1)] == symbol
     }
     
     
-    let symbols: [String: Character] = ["&quot;": "\"", "&apos;": "'", "&lt;": "<", "&gt;": ">", "&amp;": "&"]
+    let symbols: [String: Character] = [
+        "&quot;": "\"",
+        "&apos;": "'",
+        "&lt;"  : "<",
+        "&gt;"  : ">",
+        "&amp;" : "&"
+    ]
     
-    let possibleTailSize = text.count - atIndex.encodedOffset
+    let tailSize = text.count - atIndex.encodedOffset
     
-    for currentSymbol in symbols.keys where currentSymbol.count <= possibleTailSize && textAtIndexIsEqualToSymbol(currentSymbol) {
-        return (symbols[currentSymbol]!, currentSymbol.count)
+    for symbol in symbols.keys where symbol.count <= tailSize && tailIsEqualToSymbol(symbol) {
+        return (symbols[symbol]!, symbol.count)
     }
     
     return (text[atIndex], 1)
@@ -77,6 +83,13 @@ class LR22_tests: XCTestCase {
     func test5() {
         let str    = "&lt ;"
         let answer = "&lt ;"
+        let out    = htmlDecode(str)
+        XCTAssertEqual(out, answer)
+    }
+    
+    func test6() {
+        let str    = "not html"
+        let answer = "not html"
         let out    = htmlDecode(str)
         XCTAssertEqual(out, answer)
     }
