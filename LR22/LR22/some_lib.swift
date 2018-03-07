@@ -25,7 +25,7 @@ func htmlDecode(_ text: String) -> String {
 
 func decodeSymbolInText(_ text: String, atIndex: String.Index) -> (symbol: Character, size: Int) {
     
-    func tailIsEqualToSymbol(_ symbol: String) -> Bool {
+    func isTailEqualTo(_ symbol: String) -> Bool {
         return text[atIndex...text.index(atIndex, offsetBy: symbol.count - 1)] == symbol
     }
     
@@ -40,7 +40,7 @@ func decodeSymbolInText(_ text: String, atIndex: String.Index) -> (symbol: Chara
     
     let tailSize = text.count - atIndex.encodedOffset
     
-    for symbol in symbols.keys where symbol.count <= tailSize && tailIsEqualToSymbol(symbol) {
+    for symbol in symbols.keys where symbol.count <= tailSize && isTailEqualTo(symbol) {
         return (symbols[symbol]!, symbol.count)
     }
     

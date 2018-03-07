@@ -28,6 +28,7 @@ func readValues() -> [Double]? {
     return inputData
 }
 
+
 func printArray(_ array: [Double]) {
     for value in array {
         print(String(format: "%.3f", value), terminator: " ")
@@ -38,20 +39,20 @@ func printArray(_ array: [Double]) {
 
 
 func divArrayByHalfMax(_ array: inout [Double]?) {
+    let accuracy = 0.0005
+    
     guard array != nil else {
         return
     }
     
-    let halfMax: Double!
+    let halfMax: Double
     
     if let max = array!.max() {
         halfMax = max / 2
     } else {
-        array = nil
         return
     }
     
-    let accuracy = 0.0005
     guard halfMax > accuracy else {
         array = nil
         return
