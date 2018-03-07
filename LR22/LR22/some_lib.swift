@@ -7,51 +7,38 @@
 //
 
 
-func HtmlDecode(_ text: String) -> String {
+func htmlDecode(_ text: String) -> String {
     var encoded = ""
     
     var iterator = text.startIndex
     
     while iterator < text.endIndex {
-        if text[iterator] == "&", let char = checkSpecialSynbolIn(text, atIndex: iterator.encodedOffset + 1) {
-            encoded.append(char)
-            iterator = text.index(iterator, offsetBy: getSizeOfCharacter(char)! + 1)
-        } else {
-            encoded.append(text[iterator])
-            iterator = text.index(after: iterator)
-        }
+        let char = decodeSymbolInText(text, atIndex: iterator)
+        
+        encoded.append(char.symbol)
+        iterator = text.index(iterator, offsetBy: char.size)
     }
 
     return encoded
 }
 
 
-func checkSpecialSynbolIn(_ text: String, atIndex: Int) -> Character? {
-    let symbols: [String: Character] = ["quot;": "\"", "apos;": "'", "lt;": "<", "gt;": ">", "amp;": "&"]
+func decodeSymbolInText(_ text: String, atIndex: String.Index) -> (symbol: Character, size: Int) {
     
-    for currentSymbol in symbols.keys where atIndex + currentSymbol.count - 1 < text.count {
-        if text[text.index(text.startIndex, offsetBy: atIndex)...text.index(text.startIndex, offsetBy: atIndex + currentSymbol.count - 1)] == currentSymbol {
-            return symbols[currentSymbol]
-        }
+    func textAtIndexIsEqualToSymbol(_ symbol: String) -> Bool {
+        return text[atIndex...text.index(atIndex, offsetBy: symbol.count - 1)] == symbol
     }
     
-    return nil
-}
-
-
-func getSizeOfCharacter(_ char: Character) -> Int? {
-    let symbols: [Character: String] = ["\"": "quot;", "'": "apos;", "<": "lt;", ">": "gt;", "&": "amp;"]
     
-    return symbols[char]?.count
+    let symbols: [String: Character] = ["&quot;": "\"", "&apos;": "'", "&lt;": "<", "&gt;": ">", "&amp;": "&"]
+    
+    let possibleTailSize = text.count - atIndex.encodedOffset
+    
+    for currentSymbol in symbols.keys where currentSymbol.count <= possibleTailSize && textAtIndexIsEqualToSymbol(currentSymbol) {
+        return (symbols[currentSymbol]!, currentSymbol.count)
+    }
+    
+    return (text[atIndex], 1)
 }
-
-
-
-
-
-
-
-
-
 
 

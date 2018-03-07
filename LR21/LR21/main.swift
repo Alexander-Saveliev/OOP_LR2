@@ -6,26 +6,18 @@
 //  Copyright © 2018 Marty. All rights reserved.
 //
 
-
-enum Errors: Error {
-    case incorrectInputData
-    case emptyArray
-}
+import Foundation
 
 
+var inputData = readValues()
 
-guard var inputData = readValues() else {
-    throw Errors.incorrectInputData
-}
+assert(inputData != nil, "incorrect input data")
 
-guard let halfMax = findHalfMaxInArray(inputData) else {
-    throw Errors.emptyArray
-}
+divArrayByHalfMax(&inputData)
 
-divArray(&inputData, by: halfMax)
+assert(inputData != nil, "can't divide array")
 
-printArray(inputData)
-
-printArray(inputData.sorted())
+printArray(inputData!)
+printArray((inputData!).sorted())
 
 
