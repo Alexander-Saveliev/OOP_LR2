@@ -50,10 +50,12 @@ func divArrayByHalfMax(_ array: inout [Double]?) {
     if let max = array!.max() {
         halfMax = max / 2
     } else {
+        // empty array
         return
     }
     
-    guard halfMax > accuracy else {
+    guard abs(halfMax) > accuracy else {
+        // division by zero
         array = nil
         return
     }

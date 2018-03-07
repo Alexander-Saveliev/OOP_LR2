@@ -22,10 +22,12 @@ func divArrayByHalfMax(_ array: inout [Double]?) {
     if let max = array!.max() {
         halfMax = max / 2
     } else {
+        // empty array
         return
     }
     
-    guard halfMax > accuracy else {
+    guard abs(halfMax) > accuracy else {
+        // division by zero
         array = nil
         return
     }
@@ -87,6 +89,14 @@ class LR21_tests: XCTestCase {
         divArrayByHalfMax(&array)
         
         XCTAssertEqual(array!, answer)
+    }
+    
+    func testDivArray7() {
+        var array: [Double]? = [-1.0, -1.0, -1.0, -1.0]
+        let answer = [2.0, 2.0, 2.0, 2.0]
+        divArrayByHalfMax(&array)
+        
+        XCTAssertEqual(array!,answer)
     }
 }
 
