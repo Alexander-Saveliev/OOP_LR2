@@ -9,8 +9,11 @@
 import Foundation
 
 
-func generatePrimeNumbersSet1(upperBound: Int) -> Set<Int> {
-    guard upperBound >= 2 && upperBound <= 100_000_000 else {
+func generatePrimeNumbersSet(upperBound: Int) -> Set<Int> {
+    let upperLimit = 100_000_000
+    let lowerLimit = 2
+    
+    guard upperBound >= lowerLimit && upperBound <= upperLimit else {
         return []
     }
     
@@ -40,17 +43,18 @@ func generatePrimeNumbersSet1(upperBound: Int) -> Set<Int> {
 }
 
 
-func generatePrimeNumbersSet(upperBound: Int) -> Set<Int> {
-    guard upperBound >= 2 && upperBound <= 100_000_000 else {
+func generatePrimeNumbersSetAtkin(upperBound: Int) -> Set<Int> {
+    let upperLimit = 100_000_000
+    let lowerLimit = 2
+    
+    guard upperBound >= lowerLimit && upperBound <= upperLimit else {
         return []
     }
-    
     
     // set of prime numbers init
     var primesSet = Array(repeatElement(false, count: upperBound + 1))
     primesSet[2] = true
     primesSet[3] = true
-    
     
     // x2, y2 are i, j squared
     var x2 = 0
@@ -84,7 +88,6 @@ func generatePrimeNumbersSet(upperBound: Int) -> Set<Int> {
         }
     }
     
-    
     for i in stride(from: 5, through: sqrtUpperBound, by: 1) where primesSet[i] {
         n = i * i;
         
@@ -92,8 +95,6 @@ func generatePrimeNumbersSet(upperBound: Int) -> Set<Int> {
             primesSet[j] = false
         }
     }
-    
-    
     
     var primes = Set<Int>()
     
@@ -103,3 +104,4 @@ func generatePrimeNumbersSet(upperBound: Int) -> Set<Int> {
     
     return primes
 }
+

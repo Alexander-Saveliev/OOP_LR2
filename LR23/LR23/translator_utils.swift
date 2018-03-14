@@ -19,6 +19,7 @@ func readDictionaryFromFile(_ fileName: String) -> [String: String] {
     //reading
     do {
         let input = try String(contentsOf: fileURL, encoding: .utf8)
+        
         for line in input.components(separatedBy: "\n") where line != "" {
             let pair = line.components(separatedBy: "\t")
             
