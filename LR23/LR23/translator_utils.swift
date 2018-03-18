@@ -72,4 +72,3 @@ func getPermissionToChangeDictionary() -> Bool {
     
     return false
 }
-

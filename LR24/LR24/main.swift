@@ -6,21 +6,6 @@
 //  Copyright © 2018 Marty. All rights reserved.
 //
 
-let argv = CommandLine.arguments
-
-guard argv.count == 2 else {
-    throw PrimesError.incorrectNumberOfArguments
-}
-
-guard let upperBound = Int(argv[1]) else {
-    throw PrimesError.incorrectArgument(arg: argv[1])
-}
-
-let primes = generatePrimeNumbersSet(upperBound: upperBound)
-
-print(primes.count)
-
-
 func main() {
     let argv = CommandLine.arguments
     
@@ -28,6 +13,15 @@ func main() {
         print("Incorrect number of argumenrs")
         return
     }
+    
+    guard let upperBound = Int(argv[1]) else {
+        print("Error with converting an argument to Int")
+        return
+    }
+    
+    let primes = generatePrimeNumbersSet(upperBound: upperBound)
+    
+    print(primes)
 }
 
 

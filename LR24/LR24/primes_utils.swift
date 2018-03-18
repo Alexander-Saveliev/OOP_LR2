@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 func generatePrimeNumbersSet(upperBound: Int) -> Set<Int> {
     let upperLimit = 100_000_000
     let lowerLimit = 2
@@ -17,13 +16,11 @@ func generatePrimeNumbersSet(upperBound: Int) -> Set<Int> {
         return []
     }
     
-    
     // set of prime numbers init
     var primesSet = Array(repeatElement(true, count: upperBound + 1))
     
     primesSet[0] = false
     primesSet[1] = false
-    
     
     let upper = Int(sqrt(Double(upperBound)))
     
@@ -41,5 +38,3 @@ func generatePrimeNumbersSet(upperBound: Int) -> Set<Int> {
     
     return primes
 }
-
-

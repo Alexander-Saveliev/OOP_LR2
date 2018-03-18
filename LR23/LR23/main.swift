@@ -8,40 +8,47 @@
 
 import Foundation
 
-let argv = CommandLine.arguments
-
-guard argv.count == 2 else {
-    throw TranslatorError.incorrectNumberOfArguments
-}
-
-
-let fileName = argv[1]
-let exitString = "..."
-
-
-var dictionary = readDictionaryFromFile(fileName)
-var dictionaryWasChanged = false
-
-
-while true {
-    guard let word = readLine() else {
-        throw TranslatorError.errorWithConsoleReading
+func main() {
+    let argv = CommandLine.arguments
+    
+    guard argv.count == 2 else {
+        print("Incorrect number of arguments")
+        return
     }
     
-    if word == exitString {
-        break
+    let fileName   = argv[1]
+    let exitString = "..."
+    
+    var dictionary           = readDictionaryFromFile(fileName)
+    var dictionaryWasChanged = false
+    
+    while true {
+        guard let word = readLine() else {
+            print("Error with reading from console")
+            return
+        }
+        
+        if word == exitString {
+            break
+        }
+        
+        if let translation = dictionary[word.lowercased()] {
+            print(translation)
+        } else if let translation = getNewTranslationByWord(word.lowercased()) {
+            dictionary[word.lowercased()] = translation
+            dictionaryWasChanged = true
+        }
     }
     
-    if let translation = dictionary[word.lowercased()] {
-        print(translation)
-    } else if let translation = getNewTranslationByWord(word.lowercased()) {
-        dictionary[word.lowercased()] = translation
-        dictionaryWasChanged = true
+    if dictionaryWasChanged && getPermissionToChangeDictionary() {
+        writeIntoFileDictionary(dictionary, byFileName: fileName)
     }
 }
 
-if dictionaryWasChanged && getPermissionToChangeDictionary() {
-    writeIntoFileDictionary(dictionary, byFileName: fileName)
-}
+
+main()
+
+
+
 
 

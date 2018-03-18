@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		401E74122056E4CD008B53D8 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401E74112056E4CD008B53D8 /* main.swift */; };
 		401E74192056E4DA008B53D8 /* primes_utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401E74182056E4DA008B53D8 /* primes_utils.swift */; };
-		40AB65CA2058312100DD700A /* PrimesError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AB65C92058312100DD700A /* PrimesError.swift */; };
 		40CB54A22058FA7400CBB675 /* LR24_tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401E74202056EDDD008B53D8 /* LR24_tests.swift */; };
 		40CFA58720598D05001C485F /* primes_utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401E74182056E4DA008B53D8 /* primes_utils.swift */; };
 /* End PBXBuildFile section */
@@ -33,7 +32,6 @@
 		401E741E2056EDDD008B53D8 /* LR24_tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LR24_tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		401E74202056EDDD008B53D8 /* LR24_tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LR24_tests.swift; sourceTree = "<group>"; };
 		401E74222056EDDD008B53D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		40AB65C92058312100DD700A /* PrimesError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimesError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,7 +75,6 @@
 			children = (
 				401E74112056E4CD008B53D8 /* main.swift */,
 				401E74182056E4DA008B53D8 /* primes_utils.swift */,
-				40AB65C92058312100DD700A /* PrimesError.swift */,
 			);
 			path = LR24;
 			sourceTree = "<group>";
@@ -181,7 +178,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				40AB65CA2058312100DD700A /* PrimesError.swift in Sources */,
 				401E74122056E4CD008B53D8 /* main.swift in Sources */,
 				401E74192056E4DA008B53D8 /* primes_utils.swift in Sources */,
 			);
