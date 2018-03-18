@@ -21,3 +21,16 @@ let primes = generatePrimeNumbersSet(upperBound: upperBound)
 print(primes.count)
 
 
+func main() {
+    let argv = CommandLine.arguments
+    
+    guard argv.count == 2 else {
+        print("Incorrect number of argumenrs")
+        return
+    }
+}
+
+
+main()
+
+

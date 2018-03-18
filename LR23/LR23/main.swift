@@ -32,10 +32,10 @@ while true {
         break
     }
     
-    if let translation = dictionary[word] {
+    if let translation = dictionary[word.lowercased()] {
         print(translation)
-    } else if let translation = getNewTranslationByWord(word) {
-        dictionary[word] = translation
+    } else if let translation = getNewTranslationByWord(word.lowercased()) {
+        dictionary[word.lowercased()] = translation
         dictionaryWasChanged = true
     }
 }
