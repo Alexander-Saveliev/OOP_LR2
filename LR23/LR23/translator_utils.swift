@@ -28,7 +28,9 @@ func readDictionaryFromFile(_ fileName: String) -> [String: String] {
             }
         }
     }
-    catch {/* error handling here */}
+    catch {
+        print(error)
+    }
     
     return dictionary
 }
@@ -45,7 +47,9 @@ func writeIntoFileDictionary(_ dictionary: [String: String], byFileName: String)
     do {
         try text.write(to: fileURL, atomically: false, encoding: String.Encoding.utf8)
     }
-    catch {/* error handling here */}
+    catch {
+        print(error)
+    }
 }
 
 

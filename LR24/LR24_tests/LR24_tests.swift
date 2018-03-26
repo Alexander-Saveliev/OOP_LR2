@@ -47,5 +47,4 @@ class LR24_tests: XCTestCase {
         let testing = generatePrimeNumbersSet(upperBound: 100_000_000)
         XCTAssertEqual(testing.count, 5761455)
     }
-    
 }
