@@ -25,12 +25,12 @@ func gatInputData() -> (inputFileURL: URL, outputFileURL: URL, dictionary: [Stri
 
 
 func expandTemplate(_ str: String, with words: [String : String]) -> String {
-    let automat   = AhoAutomat()
-    var expanded  = ""
-    var index     = str.startIndex
-    var lastAdded = str.startIndex
-    var lastFound: Substring!
-    var current  : Substring!
+    let automat  = AhoAutomat()
+    var expanded = ""
+    var index        = str.startIndex
+    var addNextIndex = str.startIndex
+    var lastFoundWord: Substring!
+    var currentWord  : Substring!
     
     for word in words.keys {
         automat.addNewWord(word)
@@ -42,18 +42,18 @@ func expandTemplate(_ str: String, with words: [String : String]) -> String {
         if let word = automat.word {
             let startIndex = str.index(index, offsetBy: -word.count + 1)
             
-            lastFound = current
-            current   = Substring(startIndex: startIndex, endIndex: index, word: word)
+            lastFoundWord = currentWord
+            currentWord   = Substring(startIndex: startIndex, endIndex: index, word: word)
             
-            if lastFound != nil, lastFound.startIndex != current.startIndex {
-                expanded.append(String(str[lastAdded..<lastFound.startIndex]))
-                expanded.append(words[lastFound.word]!)
+            if lastFoundWord != nil, lastFoundWord.startIndex != currentWord.startIndex {
+                expanded.append(String(str[addNextIndex..<lastFoundWord.startIndex]))
+                expanded.append(words[lastFoundWord.word]!)
                 
-                index     = lastFound.endIndex
-                lastAdded = str.index(after: index)
+                index     = lastFoundWord.endIndex
+                addNextIndex = str.index(after: index)
                 automat.reset()
                 
-                current = nil
+                currentWord = nil
             }
         }
         
@@ -61,12 +61,12 @@ func expandTemplate(_ str: String, with words: [String : String]) -> String {
     }
     
     // Do we have something else in automat?
-    if current != nil {
-        expanded.append(String(str[lastAdded..<current.startIndex]))
-        expanded.append(words[current.word]!)
-        expanded.append(String(str[str.index(after: current.endIndex)..<str.endIndex]))
+    if currentWord != nil {
+        expanded.append(String(str[addNextIndex..<currentWord.startIndex]))
+        expanded.append(words[currentWord.word]!)
+        expanded.append(String(str[str.index(after: currentWord.endIndex)..<str.endIndex]))
     } else {
-        expanded.append(String(str[lastAdded..<str.endIndex]))
+        expanded.append(String(str[addNextIndex..<str.endIndex]))
     }
     
     return expanded
