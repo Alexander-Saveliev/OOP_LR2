@@ -9,5 +9,5 @@
 struct Substring {
     var startIndex: String.Index
     var endIndex  : String.Index
-    var word: String
+    var word      : String
 }

@@ -25,12 +25,12 @@ func gatInputData() -> (inputFileURL: URL, outputFileURL: URL, dictionary: [Stri
 
 
 func expandTemplate(_ str: String, with words: [String : String]) -> String {
-    let automat = AhoAutomat()
-    var expanded = ""
-    var index = str.startIndex
+    let automat   = AhoAutomat()
+    var expanded  = ""
+    var index     = str.startIndex
     var lastAdded = str.startIndex
     var lastFound: Substring!
-    var current: Substring!
+    var current  : Substring!
     
     for word in words.keys {
         automat.addNewWord(word)
@@ -60,6 +60,7 @@ func expandTemplate(_ str: String, with words: [String : String]) -> String {
         index = str.index(after: index)
     }
     
+    // Do we have something else in automat?
     if current != nil {
         expanded.append(String(str[lastAdded..<current.startIndex]))
         expanded.append(words[current.word]!)

@@ -13,7 +13,7 @@ class AhoAutomat {
     
     init() {
         root.suffLink = root
-        current = root
+        current       = root
     }
     
     

@@ -10,7 +10,7 @@ class BohrLeaf {
     let char: Character
     var isCompleted = false
     var suffLink: BohrLeaf?
-    var parent: BohrLeaf?
+    var parent  : BohrLeaf?
     
     var nextLeaf  = [Character : BohrLeaf]()
     var nextState = [Character : BohrLeaf]()
@@ -98,9 +98,6 @@ class BohrLeaf {
                     self.nextState[char] = self.getSuffFLink().getAutoMove(char: char)
                 }
             }
-        }
-        if self.nextState[char] == nil {
-            print("fucking shit")
         }
         
         return self.nextState[char]!
